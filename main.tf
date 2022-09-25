@@ -9,7 +9,7 @@ resource "aws_internet_gateway" "client-gw" {
 
 #Route Table for Gateway
 resource "aws_route_table" "client_route_table" {
-  vpc_id = aws_vpc.var.client_vpc.id
+  vpc_id = var.client_vpc.id
 
   route {
     cidr_block = var.cidr_block
@@ -23,7 +23,7 @@ resource "aws_route_table" "client_route_table" {
 
 #subnet for dev VPC
 resource "aws_subnet" "client_subnet" {
-  vpc_id            = aws_vpc.var.client_vpc.id
+  vpc_id            = var.client_vpc.id
   cidr_block        = var.cidr_block
   availability_zone = var.availability_zone
 
@@ -43,7 +43,7 @@ resource "aws_route_table_association" "client_association" {
 resource "aws_security_group" "client_allow_web" {
   name        = "allow_web_traffic"
   description = "Allow web traffic"
-  vpc_id      = aws_vpc.var.client_vpc.id
+  vpc_id      = var.client_vpc.id
 
   ingress {
     description = "HTTPS from VPC"
