@@ -1,6 +1,7 @@
 output "instance_eip" {
 
-  value = aws_eip.client_one
+  description = "Output for instance EIP"
+  value = aws_instance.client_web-server-instance.public_ip
 
 }
 
